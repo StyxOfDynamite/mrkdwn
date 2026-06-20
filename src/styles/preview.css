@@ -1,0 +1,128 @@
+/* Document-theme typography for rendered markdown (preview pane), decoupled from the
+   app-chrome theme tokens in index.css — mirrors Typora's separation of app vs. document theme. */
+
+.markdown-preview {
+  --doc-fg: #1f2328;
+  --doc-fg-muted: #59636e;
+  --doc-border: #d1d9e0;
+  --doc-bg-subtle: #f6f8fa;
+  --doc-link: #0969da;
+  --doc-blockquote-border: #d1d9e0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--doc-fg);
+  max-width: 720px;
+}
+
+html[data-theme="dark"] .markdown-preview {
+  --doc-fg: #e6edf3;
+  --doc-fg-muted: #9198a1;
+  --doc-border: #3d444d;
+  --doc-bg-subtle: #161b22;
+  --doc-link: #4493f8;
+  --doc-blockquote-border: #3d444d;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.6em;
+}
+
+.markdown-preview h1 {
+  font-size: 2em;
+  border-bottom: 1px solid var(--doc-border);
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--doc-border);
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview h3 {
+  font-size: 1.25em;
+}
+
+.markdown-preview p,
+.markdown-preview ul,
+.markdown-preview ol,
+.markdown-preview blockquote,
+.markdown-preview table,
+.markdown-preview pre {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  padding-left: 1.6em;
+}
+
+.markdown-preview li + li {
+  margin-top: 0.25em;
+}
+
+.markdown-preview a {
+  color: var(--doc-link);
+  text-decoration: none;
+}
+
+.markdown-preview a:hover {
+  text-decoration: underline;
+}
+
+.markdown-preview blockquote {
+  border-left: 3px solid var(--doc-blockquote-border);
+  padding: 0 1em;
+  color: var(--doc-fg-muted);
+}
+
+.markdown-preview code:not(.shiki code) {
+  background-color: var(--doc-bg-subtle);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.9em;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.markdown-preview pre.shiki {
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9em;
+}
+
+.markdown-preview table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  border: 1px solid var(--doc-border);
+  padding: 0.4em 0.8em;
+}
+
+.markdown-preview th {
+  background-color: var(--doc-bg-subtle);
+  font-weight: 600;
+}
+
+.markdown-preview img {
+  max-width: 100%;
+}
+
+.markdown-preview hr {
+  border: none;
+  border-top: 1px solid var(--doc-border);
+  margin: 1.5em 0;
+}

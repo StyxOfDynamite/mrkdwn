@@ -1,0 +1,19 @@
+.printable-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .printable-only {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+  }
+
+  .markdown-preview {
+    max-width: none;
+  }
+}
