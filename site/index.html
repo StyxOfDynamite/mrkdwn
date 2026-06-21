@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mrkdwn — a clean, professional markdown editor</title>
+<meta name="description" content="mrkdwn is a free, open-source markdown editor for macOS, Windows, and Linux. Write in source or WYSIWYG, toggle anytime." />
+<link rel="icon" href="https://raw.githubusercontent.com/StyxOfDynamite/mrkdwn/main/src-tauri/icons/32x32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <span class="wordmark">mrkdwn<span class="caret" aria-hidden="true">▌</span></span>
+    <button class="mode-pill" id="modePill" type="button" aria-pressed="false">
+      <span class="mode-pill-track">
+        <span class="mode-pill-label mode-pill-label--source">Source</span>
+        <span class="mode-pill-label mode-pill-label--preview">Preview</span>
+        <span class="mode-pill-knob" aria-hidden="true"></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero-stage" id="heroStage" data-mode="preview">
+
+      <div class="pane pane--source" id="paneSource">
+        <pre class="src"><span class="src-h1"># mrkdwn</span>
+
+A clean, professional markdown editor.
+
+<span class="src-li">- Native apps for macOS, Windows, and Linux</span>
+<span class="src-li">- Write in source or WYSIWYG — toggle anytime</span>
+<span class="src-li">- Free and open source</span></pre>
+      </div>
+
+      <div class="pane pane--preview" id="panePreview">
+        <h1 class="rendered-h1">mrkdwn</h1>
+        <p class="rendered-sub">A clean, professional markdown editor.</p>
+        <ul class="rendered-list">
+          <li>Native apps for macOS, Windows, and Linux</li>
+          <li>Write in source or WYSIWYG — toggle anytime</li>
+          <li>Free and open source</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="hero-caption">This page renders the same way mrkdwn renders yours. Flip the switch above.</p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" id="primaryDownload" href="#" rel="noopener">
+        <span id="primaryDownloadLabel">Loading…</span>
+      </a>
+      <div class="cta-secondary" id="secondaryLinks" aria-label="Other platforms"></div>
+    </div>
+  </section>
+
+  <div class="rule" role="presentation">---</div>
+
+  <section class="platforms wrap" id="platforms">
+    <p class="eyebrow">## platforms</p>
+    <div class="platform-grid" id="platformGrid">
+      <!-- populated by app.js -->
+    </div>
+  </section>
+
+  <div class="rule" role="presentation">---</div>
+
+  <section class="release wrap" id="releaseInfo">
+    <p class="eyebrow">### latest release</p>
+    <div class="release-body" id="releaseBody">
+      <p class="release-loading">Checking GitHub for the latest build…</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>mrkdwn — built with Tauri</span>
+  <a href="https://github.com/StyxOfDynamite/mrkdwn" target="_blank" rel="noopener">Source on GitHub ↗</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
