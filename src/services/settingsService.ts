@@ -5,7 +5,6 @@ const STORE_FILE = "settings.json";
 
 interface PersistedSettings {
   theme: ThemeMode;
-  customCssPath: string | null;
   rootFolderPath: string | null;
 }
 
@@ -22,7 +21,6 @@ export async function loadSettings(): Promise<Partial<PersistedSettings>> {
   const store = await getStore();
   return {
     theme: await store.get<ThemeMode>("theme"),
-    customCssPath: await store.get<string>("customCssPath"),
     rootFolderPath: await store.get<string>("rootFolderPath"),
   };
 }

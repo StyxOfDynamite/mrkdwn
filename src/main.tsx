@@ -4,7 +4,6 @@ import App from "./App";
 import "./styles/index.css";
 import "./styles/preview.css";
 import "./styles/shikiDarkOverride.css";
-import "./styles/print.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

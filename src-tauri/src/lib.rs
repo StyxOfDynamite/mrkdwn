@@ -23,6 +23,23 @@ fn allow_path<R: tauri::Runtime>(app: &tauri::AppHandle<R>, path: &str) {
     let _ = app.fs_scope().allow_file(path);
 }
 
+/// The dialog plugin's fs-scope auto-extension only covers paths picked through an Open/Save
+/// dialog *in the current session* — it explicitly does not persist across restarts. Recent
+/// Files and the folder tree both read paths that were never (re-)selected through a dialog
+/// this session, so the frontend calls this before every read/write to grant access on demand,
+/// the same way file-association opens already do.
+#[tauri::command]
+fn allow_file_access(app: tauri::AppHandle, path: String) {
+    allow_path(&app, &path);
+}
+
+/// Same idea as `allow_file_access`, for the folder tree: picking a folder via the Open dialog
+/// only grants scope to the folder itself, not (durably, across restarts) to files inside it.
+#[tauri::command]
+fn allow_folder_access(app: tauri::AppHandle, path: String) {
+    let _ = app.fs_scope().allow_directory(&path, true);
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let mut builder = tauri::Builder::default();
@@ -50,7 +67,11 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_opener::init())
         .manage(InitialFilePath(Mutex::new(None)))
-        .invoke_handler(tauri::generate_handler![take_initial_file_path])
+        .invoke_handler(tauri::generate_handler![
+            take_initial_file_path,
+            allow_file_access,
+            allow_folder_access
+        ])
         .setup(|app| {
             // Cold-start case on Windows/Linux: the OS launched a fresh process with a file path
             // argument. Store it for the frontend to pull once ready (see InitialFilePath above).
